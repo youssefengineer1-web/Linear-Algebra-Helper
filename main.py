@@ -1,5 +1,6 @@
 import utility, gauss_jordan_elimination, inverse, determinant, rank, rref, transpose, identity, LUDecomposition
 import dot_product, cross_product, angle_bet_vectors, unit_vector
+import projection, reflection
 from rich.console import Console
 from pyfiglet import figlet_format
 
@@ -13,6 +14,9 @@ def vector_functions() -> None:
         "Cross Product ⨯",
         "Angle between two vectors θ",
         "Unit Vector 𝑢",
+        "Projection onto a vector 𝑽",
+        "Reflection about a vector 𝑽",
+        "Reflection about a plane ⊥ 𝑽",
     ]
 
     console.print(f"  [bold magenta]Vector Functions :")
@@ -29,8 +33,14 @@ def vector_functions() -> None:
         cross_product.main()
     elif choose == 3:
         angle_bet_vectors.main()
-    elif choose == 4 : 
+    elif choose == 4:
         unit_vector.main()
+    elif choose == 5:
+        projection.vector()
+    elif choose == 6:
+        reflection.vector(about_plane=False)
+    elif choose == 7:
+        reflection.vector(about_plane=True)
     else:
         console.print(f"[yellow]{figlet_format("Linear Algebra Helper")}")
 
@@ -38,7 +48,7 @@ def vector_functions() -> None:
 def matrix_functions() -> None:
 
     matrix_options = [
-        "Solving System Of Linear Equations 𝑨𝑿 = 𝑩",
+        "Solving Systemس Of Linear Equations 𝑨𝑿 = 𝑩",
         "Matrix Inverse 𝑨⁻¹",
         "Determinant det(𝑨)",
         "Matrix Rank 𝑟(𝑨)",
@@ -46,6 +56,9 @@ def matrix_functions() -> None:
         "Matrix Transpose 𝑨ᵀ",
         "Identity Matrix 𝑰",
         "LU Decomposition 𝑨 = 𝑳𝑼",
+        "Projection Matrix proj(𝑨)",
+        "Reflection Matrix about a vector 𝑽 ref(𝑨)",
+        "Reflection Matrix about a plane ⊥ 𝑽 ref(𝑨)",
     ]
 
     console.print(f"  [bold magenta]Matrix Functions :")
@@ -72,6 +85,12 @@ def matrix_functions() -> None:
         identity.main()
     elif choose == 8:
         LUDecomposition.main()
+    elif choose == 9:
+        projection.matrix()
+    elif choose == 10:
+        reflection.matrix(about_plane=False)
+    elif choose == 11:
+        reflection.matrix(about_plane=True)
     else:
         console.print(f"[yellow]{figlet_format("Linear Algebra Helper")}")
 
