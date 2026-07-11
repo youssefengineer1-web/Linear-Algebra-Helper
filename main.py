@@ -1,6 +1,6 @@
 import utility, gauss_jordan_elimination, inverse, determinant, rank, rref, transpose, identity, LUDecomposition
 import dot_product, cross_product, angle_bet_vectors, unit_vector
-import projection, reflection
+import projection, reflection, rotation
 from rich.console import Console
 from pyfiglet import figlet_format
 
@@ -17,6 +17,18 @@ def vector_functions() -> None:
         "Projection onto a vector 𝑽",
         "Reflection about a vector 𝑽",
         "Reflection about a plane ⊥ 𝑽",
+        "Rotation by θ to vector 𝑽",
+    ]
+
+    vector_fun = [
+        dot_product.main,
+        cross_product.main,
+        angle_bet_vectors.main,
+        unit_vector.main,
+        projection.vector,
+        lambda: reflection.vector(about_plane=False),
+        lambda: reflection.vector(about_plane=True),
+        rotation.rotation,
     ]
 
     console.print(f"  [bold magenta]Vector Functions :")
@@ -24,23 +36,11 @@ def vector_functions() -> None:
     for i, option in enumerate(vector_options, 1):
         console.print(f"  [magenta]{i}) {option}")
 
-    choose = utility.input_int("\n  [magenta]Choose : ")
+    choose = utility.input_int("\n  [magenta]Choose : ") - 1
     console.print("")
 
-    if choose == 1:
-        dot_product.main()
-    elif choose == 2:
-        cross_product.main()
-    elif choose == 3:
-        angle_bet_vectors.main()
-    elif choose == 4:
-        unit_vector.main()
-    elif choose == 5:
-        projection.vector()
-    elif choose == 6:
-        reflection.vector(about_plane=False)
-    elif choose == 7:
-        reflection.vector(about_plane=True)
+    if choose in range(len(vector_fun)):
+        vector_fun[choose]()
     else:
         console.print(f"[yellow]{figlet_format("Linear Algebra Helper")}")
 
@@ -48,7 +48,7 @@ def vector_functions() -> None:
 def matrix_functions() -> None:
 
     matrix_options = [
-        "Solving Systemس Of Linear Equations 𝑨𝑿 = 𝑩",
+        "Solving Systems Of Linear Equations 𝑨𝑿 = 𝑩",
         "Matrix Inverse 𝑨⁻¹",
         "Determinant det(𝑨)",
         "Matrix Rank 𝑟(𝑨)",
@@ -61,36 +61,32 @@ def matrix_functions() -> None:
         "Reflection Matrix about a plane ⊥ 𝑽 ref(𝑨)",
     ]
 
+    matrix_fun = [
+        gauss_jordan_elimination.main,
+        inverse.main,
+        determinant.main,
+        rank.main,
+        rref.main,
+        transpose.main,
+        identity.main,
+        LUDecomposition.main,
+        projection.matrix,
+        lambda: reflection.matrix(about_plane=False),
+        lambda: reflection.matrix(about_plane=True),
+    ]
+
     console.print(f"  [bold magenta]Matrix Functions :")
 
     for i, option in enumerate(matrix_options, 1):
         console.print(f"  [magenta]{i}) {option}")
 
-    choose = utility.input_int("\n  [magenta]Choose : ")
+    choose = utility.input_int("\n  [magenta]Choose : ") - 1
+
     console.print("")
 
-    if choose == 1:
-        gauss_jordan_elimination.main()
-    elif choose == 2:
-        inverse.main()
-    elif choose == 3:
-        determinant.main()
-    elif choose == 4:
-        rank.main()
-    elif choose == 5:
-        rref.main()
-    elif choose == 6:
-        transpose.main()
-    elif choose == 7:
-        identity.main()
-    elif choose == 8:
-        LUDecomposition.main()
-    elif choose == 9:
-        projection.matrix()
-    elif choose == 10:
-        reflection.matrix(about_plane=False)
-    elif choose == 11:
-        reflection.matrix(about_plane=True)
+    if choose in range(len(matrix_fun)):
+        matrix_fun[choose]()
+
     else:
         console.print(f"[yellow]{figlet_format("Linear Algebra Helper")}")
 
@@ -98,19 +94,18 @@ def matrix_functions() -> None:
 utility.greeting("Welcome To Linear Algebra Helper, My Summer Project :)")
 
 mod_options = ["Matrix []", "Vector →"]
+mod_fun = [matrix_functions, vector_functions]
 
 console.print(f"  [bold magenta]Mods : ")
 
 for i, option in enumerate(mod_options, 1):
     console.print(f"  [magenta]{i}) {option}")
 
-choose = utility.input_int("\n  [magenta]Choose : ")
+choose = utility.input_int("\n  [magenta]Choose : ") - 1
 console.print("")
 
 
-if choose == 1:
-    matrix_functions()
-elif choose == 2:
-    vector_functions()
+if choose in range(len(mod_fun)):
+    mod_fun[choose]()
 else:
     console.print(f"[yellow]{figlet_format("Linear Algebra Helper")}")
