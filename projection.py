@@ -7,7 +7,7 @@ console = Console()
 
 
 def vector(
-    text: str = "𝑻(𝑿)", msg: str = "Projection of 𝑿 into 𝑽 ⇒ 𝐕 ∈ ℝⁿ  :)"
+    text: str = "𝑻(𝑿)", msg: str = "Projection of 𝑿 into  𝐕 ⇒ 𝐕 ∈ ℝⁿ  :)"
 ) -> utility.Matrix:
 
     utility.greeting(msg)
@@ -22,7 +22,7 @@ def vector(
     for i in range(len(vectors[1])):
         vectors[1][i] *= scale
 
-    console.print(f"\n  [bold cyan]∵ {text} = (𝑿.𝐕 / ‖𝐕‖²)𝐕")
+    console.print(f"\n  [bold cyan]∵ {text} = (𝑿·𝐕 / ‖𝐕‖²)𝐕")
 
     console.print(f"\n  [green]∴ {text} = ({utility.show_num(scale)})𝐕\n")
 
@@ -47,7 +47,7 @@ def matrix(
 
     utility.show_vectors(vectors,[],"𝐕 = ", is_row_vector=True)
 
-    console.print(f"  [bold cyan]∵ {text}(𝑿) = (𝑿.𝐕 / ‖𝐕‖²)𝐕")
+    console.print(f"  [bold cyan]∵ {text}(𝑿) = (𝑿·𝐕 / ‖𝐕‖²)𝐕")
 
     console.print(
         f"\n  ∵ ‖𝐕‖² = {' + '.join(f'({utility.show_num(i)})²' for i in vectors[0])} = {utility.show_num(norm_sq)}"

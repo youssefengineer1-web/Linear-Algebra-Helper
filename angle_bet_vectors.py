@@ -25,8 +25,8 @@ def main() -> None:
     console.print(f"\n  ∵ ‖𝐕₁‖ = √({text1}) = {utility.show_num(v1)}")
     console.print(f"  ∵ ‖𝐕₂‖ = √({text2}) = {utility.show_num(v2)}\n")
 
-    console.print("  [cyan]∵ 𝐕₁.𝐕₂ = ‖𝐕₁‖‖𝐕₂‖ * cos(θ)")
-    console.print("  [cyan]∴ cos(θ) = 𝐕₁.𝐕₂ / (‖𝐕₁‖‖𝐕₂‖)\n")
+    console.print("  [cyan]∵ 𝐕₁·𝐕₂ = ‖𝐕₁‖‖𝐕₂‖ * cos(θ)")
+    console.print("  [cyan]∴ cos(θ) = 𝐕₁·𝐕₂ / (‖𝐕₁‖‖𝐕₂‖)\n")
 
     console.print(
         f"  [green]∴ cos(θ) = {utility.show_num(dot)} / ({utility.show_num(v1)} * {utility.show_num(v2)})"

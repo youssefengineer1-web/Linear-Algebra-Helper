@@ -7,7 +7,7 @@ console = Console()
 
 def vector(about_plane: bool):
 
-    msg = "a plane ⊥ 𝑽" if about_plane else "𝑽"
+    msg = "a plane ⊥ 𝑽" if about_plane else "Line 𝑳 ∥ 𝑽"
 
     vectors = projection.vector("proj(𝑿)", f"Reflection of 𝑿 about {msg} ⇒ 𝐕 ∈ ℝⁿ  :)")
 
@@ -29,7 +29,7 @@ def vector(about_plane: bool):
 
 def matrix(about_plane: bool):
 
-    msg = "a plane ⊥ 𝑽" if about_plane else "𝑽"
+    msg = "a plane ⊥ 𝑽" if about_plane else "Line 𝑳 ∥ 𝑽"
 
     identity, proj_matrix = projection.matrix(
         "proj", f"Reflection Matrix about {msg} ⇒ 𝐕 ∈ ℝⁿ  :)"
