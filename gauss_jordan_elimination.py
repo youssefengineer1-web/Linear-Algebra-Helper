@@ -86,33 +86,45 @@ def print_solution(
         console.print("[yellow]  Many Solution")
 
         # Printing The Solution
-        free_variables = []
+        free_variables = ["[bold green]  = [/bold green]"]
 
         console.print("[yellow]  Free Variables :", end="")
 
-        for col in range(column_count - 1):
-            if col not in set_pivots:
-                free_variables.append(
-                    utility.lower_num(utility.Fraction(1), "𝑥", col + 1)
-                )
+        unkonws = [
+            utility.lower_num(utility.Fraction(1), "𝑥", i + 1)
+            for i in range(column_count - 1)
+        ]
+        many_sol = [unkonws]
 
-        console.print(f"[yellow]  {" ".join(free_variables)}")
+        end = ""
 
-        for equ, pivot_index in zip(equations, pivot_indices):
+        for i, col in enumerate(zip(*equations)):
+            j = 0
+            vector = []
+            if i == column_count - 1 and all(n == 0 for n in col):
+                end = free_variables[-1].split("+")[0]
+                break
+            if i not in set_pivots:
+                if i < column_count - 1:
+                    free_variables.append(f"[bold green]{unkonws[i]} +[/bold green]")
+                    console.print(f" [bold yellow]{unkonws[i]}", end="")
+                for n in range(column_count - 1):
+                    if i == n:
+                        vector.append(utility.Fraction(1))
+                    elif n not in set_pivots:
+                        vector.append(utility.Fraction(0))
+                    else:
+                        if i == column_count - 1:
+                            vector.append(col[j])
+                        else:
+                            vector.append(-col[j])
+                        j += 1
 
-            const_variable = (
-                f"{utility.lower_num(utility.Fraction(1),'𝑥',pivot_index+1)} = "
-            )
+                many_sol.append(vector)
 
-            for col in range(pivot_index + 1, column_count):
+        console.print(f"\n")
 
-                if col == column_count - 1:
-                    const_variable += f"{utility.show_num(equ[col])}"
-                    console.print(f"[cyan]  {const_variable}")
-                    break
-
-                if not utility.is_zero(equ[col]):
-                    const_variable += f"{utility.lower_num(-equ[col],'𝑥',col+1)} + "
+        utility.show_vectors(many_sol, free_variables, separator="   +", end=end, is_row_vector=True)  # type: ignore
 
 
 def main() -> None:

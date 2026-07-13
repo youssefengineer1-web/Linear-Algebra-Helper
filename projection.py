@@ -26,7 +26,7 @@ def vector(
 
     console.print(f"\n  [green]∴ {text} = ({utility.show_num(scale)})𝐕\n")
 
-    utility.show_vectors(vectors[1:], f"∴ {text} = ", is_row_vector=True)
+    utility.show_vectors(vectors[1:], [],f"∴ {text} = ", is_row_vector=True)
 
     return vectors
 
@@ -45,7 +45,7 @@ def matrix(
     proj_matrix = []
     vector_str = f"({','.join(str(a) for a in vectors[0])})"
 
-    utility.show_vectors(vectors, "𝐕 = ", is_row_vector=True)
+    utility.show_vectors(vectors,[],"𝐕 = ", is_row_vector=True)
 
     console.print(f"  [bold cyan]∵ {text}(𝑿) = (𝑿.𝐕 / ‖𝐕‖²)𝐕")
 
@@ -79,7 +79,7 @@ def matrix(
         )
 
         utility.show_vectors(
-            proj_matrix[i:], f"∴ {text}({show_v1}) = ", is_row_vector=True
+            proj_matrix[i:], [],f"∴ {text}({show_v1}) = ", is_row_vector=True
         )
 
     console.print("  [bold green]∴ proj(𝑨) = \n")

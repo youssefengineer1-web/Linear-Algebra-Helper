@@ -58,7 +58,7 @@ def show_num(num: Fraction) -> str:
 
 def get_widths(strings: Sequence[Sequence[Fraction | str]]) -> list[int]:
 
-    return [max(max(len(num),3)for num in column) for column in zip(*strings)]
+    return [max(max(len(num), 3) for num in column) for column in zip(*strings)]
 
 
 def brackets(row_index: int, rows: int) -> tuple[str, str]:
@@ -135,10 +135,13 @@ def show(
 
 def show_vectors(
     vectors: Matrix,
+    vars: list,
     start: str = "",
     separator: str = " ,",
-    colour: str = "cyan",
+    colour: str = "bold cyan",
     is_row_vector: bool = False,
+    end: str = "",
+    x: str = "",
 ) -> None:
 
     if is_row_vector:
@@ -148,7 +151,10 @@ def show_vectors(
 
     # Change Every Number to Fraction string
 
-    strings = [[show_num(num) for num in vector] for vector in vectors]
+    strings = [
+        [num if type(num) == str else show_num(num) for num in vector]
+        for vector in vectors
+    ]
 
     # Calculate The Width of The Longest Number in The Column
     widths = get_widths(strings)
@@ -160,17 +166,21 @@ def show_vectors(
         left, right = brackets(vector_index, vector_count)
         sym = separator if vector_index == vector_count // 2 else " " * len(separator)
         s = start if vector_index == vector_count // 2 else " " * len(start)
-        console.print("  "+s, end="")
+        e = end if vector_index == vector_count // 2 else ""
+        console.print("  " + s, end="")
         console.print(left, end="")
 
         text = f"{right}{sym}{left}".join(
             f"[{colour}]{num:^{widths[i]}s}[/{colour}]" for i, num in enumerate(vetctor)
         )
+        if vars and sym == separator:
+            for var in vars:
+                text = text.replace(sym, var, 1)
         console.print(text, end="")  # ^{width[col_index]} => num of Chars
 
-        console.print(right)
+        console.print(right + e)
 
-    console.print("[dim]=" * 48)
+    console.print(x + "[dim]=" * 48)
 
 
 def make_identity_row(row_count: int, cur_row: int) -> list:
@@ -255,7 +265,9 @@ def swap_rows(
             is_swap = True
 
             # Printing The Steps
-            console.print(f"[bright_magenta]  {row_nums[row]} <=> {row_nums[j]}")
+            console.print(
+                f"[bright_magenta]  {row_nums[row]} [bold]↔[/bold] {row_nums[j]}"
+            )
 
             equations[row], equations[j] = equations[j], equations[row]
 
@@ -306,6 +318,33 @@ def gauss_jordan_elimination(
 
                 for k in range(column, column_count):
                     equations[j][k] += -coefficient * equations[row][k]
+
+    return num_of_elimination
+
+
+def gauss_elimination(
+    equations: Matrix, row: int, column: int, row_nums: list[str]
+) -> int:
+
+    num_of_elimination = 0
+    equation_count = len(equations)
+    column_count = len(equations[0])
+
+    for j in range(row + 1, equation_count):
+        coefficient = equations[j][column]
+
+        # No Elimination needed if the coefficient = 0
+        if not is_zero(coefficient):
+
+            num_of_elimination += 1
+
+            # Printing The Steps
+            console.print(
+                f"[bright_magenta]  {row_nums[j]} = {row_nums[j]} + {lower_num(-coefficient, '𝑅',row + 1)}"
+            )
+
+            for k in range(column, column_count):
+                equations[j][k] += -coefficient * equations[row][k]
 
     return num_of_elimination
 

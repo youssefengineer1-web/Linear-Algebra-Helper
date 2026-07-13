@@ -14,7 +14,7 @@ def dot_product(v1: str = "𝐕₁", v2: str = "𝐕₂") -> tuple[Fraction, uti
     n = utility.input_int("Enter 𝑛 : ")
     vectors = utility.read_equations(2, n, msg="Vector")
 
-    utility.show_vectors(vectors, f"{v1} =", f" {v2} =", is_row_vector=True)
+    utility.show_vectors(vectors, [],f"{v1} =", f" {v2} =", is_row_vector=True)
 
     dot_msg = f"  ∵ {v1}.{v2} = " + " + ".join(
         f"({utility.show_num(x)} * {utility.show_num(y)})" for x, y in zip(*vectors)

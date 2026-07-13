@@ -32,7 +32,7 @@ def ludecomposition(
 
                     # Printing The Steps
                     console.print(
-                        f"[bright_magenta]  {row_nums[row]} <=> {row_nums[j]}"
+                        f"[bright_magenta]  {row_nums[row]} [bold]↔[/bold] {row_nums[j]}"
                     )
 
                     u[row], u[j] = u[j], u[row]

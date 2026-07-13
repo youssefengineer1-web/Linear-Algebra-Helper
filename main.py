@@ -1,4 +1,4 @@
-import utility, gauss_jordan_elimination, inverse, determinant, rank, rref, transpose, identity, LUDecomposition
+import utility, gauss_jordan_elimination, inverse, determinant, rank, rref, transpose, identity, LUDecomposition, ker_img, ref
 import dot_product, cross_product, angle_bet_vectors, unit_vector
 import projection, reflection, rotation
 from rich.console import Console
@@ -52,7 +52,9 @@ def matrix_functions() -> None:
         "Matrix Inverse 𝑨⁻¹",
         "Determinant det(𝑨)",
         "Matrix Rank 𝑟(𝑨)",
+        "Row Echelon Form 𝑹𝑬𝑭",
         "Reduced Row Echelon Form 𝑹𝑹𝑬𝑭",
+        "Kernel And Image of 𝑨",
         "Matrix Transpose 𝑨ᵀ",
         "Identity Matrix 𝑰",
         "LU Decomposition 𝑨 = 𝑳𝑼",
@@ -66,7 +68,9 @@ def matrix_functions() -> None:
         inverse.main,
         determinant.main,
         rank.main,
+        ref.main,
         rref.main,
+        ker_img.main,
         transpose.main,
         identity.main,
         LUDecomposition.main,

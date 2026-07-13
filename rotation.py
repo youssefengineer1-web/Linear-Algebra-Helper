@@ -66,10 +66,10 @@ def rotation():
             console.print("  [bold red]Could Not Convert To Float")
 
     rotation_matrix = utility.identity_matrix(n, n)
-    rotation_matrix[u][u] = f"cos({theta})"  # type: ignore
-    rotation_matrix[u][v] = f"-sin({theta})"  # type: ignore
-    rotation_matrix[v][u] = f"sin({theta})"  # type: ignore
-    rotation_matrix[v][v] = f"cos({theta})"  # type: ignore
+    rotation_matrix[u][u] = f"cos({utility.show_num(theta)})"  # type: ignore
+    rotation_matrix[u][v] = f"-sin({utility.show_num(theta)})"  # type: ignore
+    rotation_matrix[v][u] = f"sin({utility.show_num(theta)})"  # type: ignore
+    rotation_matrix[v][v] = f"cos({utility.show_num(theta)})"  # type: ignore
 
     if mod == 2:
         theta = math.radians(theta)
@@ -93,4 +93,4 @@ def rotation():
 
     trans = [dot([rotation_matrix[i], vector[0]]) for i in range(n)]
 
-    utility.show_vectors([trans], "∴ 𝑻(𝑿) =", colour="green", is_row_vector=True)
+    utility.show_vectors([trans], [],"∴ 𝑻(𝑿) =", colour="green", is_row_vector=True)

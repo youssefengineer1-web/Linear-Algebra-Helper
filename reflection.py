@@ -24,7 +24,7 @@ def vector(about_plane: bool):
 
         console.print(f"\n  [bold cyan]∵ 𝑻(𝑿) = 2 * proj(𝑿) - 𝑿\n")
 
-    utility.show_vectors(vectors[:1], "∴ 𝑻(𝑿) = ", is_row_vector=True)
+    utility.show_vectors(vectors[:1], [],"∴ 𝑻(𝑿) = ", is_row_vector=True)
 
 
 def matrix(about_plane: bool):
