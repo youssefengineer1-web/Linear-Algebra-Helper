@@ -5,6 +5,41 @@ from rich.console import Console
 console = Console()
 
 
+def show_kernel(rows: utility.Matrix, pivot_indices: list[int], msg : str = "ker(𝑨)") -> utility.Matrix:
+    kernel_basis = []
+    set_pivots = set(pivot_indices)
+    column_count = len(rows[0])
+
+    for i, col in enumerate(zip(*rows)):
+        pivot_row = 0
+        basis_vector = []
+        if i == column_count - 1 and all(
+            n == 0 for n in col
+        ):  # Ignore the augmented column if it is all zeros
+            break
+        if i not in set_pivots:
+            for n in range(column_count - 1):
+                if i == n:
+                    basis_vector.append(utility.Fraction(1))
+                elif n not in set_pivots:
+                    basis_vector.append(utility.Fraction(0))
+                else:
+                    if i == column_count - 1:
+                        basis_vector.append(col[pivot_row])
+                    else:
+                        basis_vector.append(-col[pivot_row])
+                    pivot_row += 1
+
+            kernel_basis.append(basis_vector)
+
+    console.print(f"[bold green]  {msg} = span {{")
+    utility.show_vectors(
+        kernel_basis, [], is_row_vector=True, x="[bold green]  } [/bold green] \n"
+    )
+
+    return kernel_basis
+
+
 # Check Solution Type
 def print_solution(
     rows: utility.Matrix,
@@ -24,35 +59,7 @@ def print_solution(
     else:
 
         # Printing The Solution
-
-        kernel_basis = []
-
-        for i, col in enumerate(zip(*rows)):
-            pivot_row = 0
-            basis_vector = []
-            if i == column_count - 1 and all(
-                n == 0 for n in col
-            ):  # Ignore the augmented column if it is all zeros
-                break
-            if i not in set_pivots:
-                for n in range(column_count - 1):
-                    if i == n:
-                        basis_vector.append(utility.Fraction(1))
-                    elif n not in set_pivots:
-                        basis_vector.append(utility.Fraction(0))
-                    else:
-                        if i == column_count - 1:
-                            basis_vector.append(col[pivot_row])
-                        else:
-                            basis_vector.append(-col[pivot_row])
-                        pivot_row += 1
-
-                kernel_basis.append(basis_vector)
-
-        console.print("[bold green]  ker(𝑨) = span {")
-        utility.show_vectors(
-            kernel_basis, [], is_row_vector=True, x="[bold green]  } [/bold green] \n"
-        )
+        show_kernel(rows, pivot_indices)
 
         img_A = [[row[i] for i in pivot_indices] for row in A]
 
