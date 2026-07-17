@@ -1,4 +1,4 @@
-import utility, gauss_jordan_elimination, inverse, determinant, rank, rref, transpose, identity, LUDecomposition, ker_img, ref, matrix_mult, gram_schmidt, Linear_Algebra_Helper.least_squares as least_squares
+import utility, gauss_jordan_elimination, inverse, determinant, rank, rref, transpose, identity, LUDecomposition, ker_img, ref, matrix_mult, gram_schmidt, least_squares
 import dot_product, cross_product, angle_bet_vectors, unit_vector
 import projection, reflection, rotation
 from rich.console import Console
