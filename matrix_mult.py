@@ -69,7 +69,7 @@ def show_2_matrices(
     console.print("[dim]=" * 48)
 
 
-def matrix_mult(m1: utility.Matrix, m2: utility.Matrix):
+def matrix_mult(m1: utility.Matrix, m2: utility.Matrix, show_steps : bool = True) -> utility.Matrix_show:
 
     r1 = len(m1)
     r2 = len(m2)
@@ -82,10 +82,12 @@ def matrix_mult(m1: utility.Matrix, m2: utility.Matrix):
         for r in range(r1):
             res[r][c] = dot([m1[r], m2_trans[c]])
 
-        console.print("  [bold green]𝑴₁𝑴₂ = ")
-        show_2_matrices(m1, m2, [c for _ in range(r2)], cur_row=-2)
-        console.print("  [bold green]'Matrix Ans' = ")
-        utility.show(res, c2, [c for _ in range(r1)], -2)
+        if show_steps : 
+            console.print("  [bold green]𝑴₁𝑴₂ = ")
+            show_2_matrices(m1, m2, [c for _ in range(r2)], cur_row=-2)
+            console.print("  [bold green]'Matrix Ans' = ")
+            utility.show(res, c2, [c for _ in range(r1)], -2)
+    return res
 
 
 def main():

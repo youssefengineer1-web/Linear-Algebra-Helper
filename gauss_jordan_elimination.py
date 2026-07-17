@@ -79,7 +79,7 @@ def print_solution(
 
         for col in range(column_count - 1):
             console.print(
-                f"[cyan]  {utility.lower_num(utility.Fraction(1),'𝑥',col + 1)} = {utility.show_num(equations[col][-1])}"
+                f"[bold cyan]  {utility.lower_num(utility.Fraction(1),'𝑥',col + 1)} = {utility.show_num(equations[col][-1])}"
             )
 
     else:

@@ -104,16 +104,15 @@ def main() -> None:
     nullity = vector_count - rank
 
     console.print(f"  [bold cyan]Rank    = {rank}")
-    console.print(f"  [bold cyan]Nullity = {nullity}")
-    console.print(f"  [bold cyan]∵ Rank + Nullity = Number of Columns")
-    console.print(f"  [bold green]{rank} + {nullity} = {vector_count} ✓ \n")
+    console.print(f"  [bold cyan]Nullity = {nullity}\n")
+   
 
     if nullity != 0:
         dependent_vectors = show_dependent(rref, vector_count, pivot_indices)
 
         for v in reversed(dependent_vectors):
-
             del vectors[v]
+            
 
     console.print(f"  [bold green]Linear Independent Vectors :")
     independent_vectors = [
