@@ -1,4 +1,4 @@
-import utility, gauss_jordan_elimination, inverse, determinant, rank, rref, transpose, identity, LUDecomposition, ker_img, ref, matrix_mult, gram_schmidt, least_aquars
+import utility, gauss_jordan_elimination, inverse, determinant, rank, rref, transpose, identity, LUDecomposition, ker_img, ref, matrix_mult, gram_schmidt, Linear_Algebra_Helper.least_squares as least_squares
 import dot_product, cross_product, angle_bet_vectors, unit_vector
 import projection, reflection, rotation
 from rich.console import Console
@@ -14,7 +14,7 @@ def vector_functions() -> None:
         "Cross Product  ×",
         "Angle Between Two Vectors",
         "Unit Vector  𝒖",
-        "Projection onto a Vector",
+        "Project a Vector onto Another Vector",
         "Reflection about a Line",
         "Reflection about a Plane",
         "Rotate a Vector by θ",
@@ -63,7 +63,7 @@ def matrix_functions() -> None:
         "Reflection Matrix about a Line",
         "Reflection Matrix about a Plane",
         "Complete Orthonormal Basis (Gram-Schmidt & Orthogonal Complement)",
-        "Least Squars"
+        "Least Squares"
     ]
 
     matrix_fun = [
@@ -82,7 +82,7 @@ def matrix_functions() -> None:
         lambda: reflection.matrix(about_plane=False),
         lambda: reflection.matrix(about_plane=True),
         gram_schmidt.main,
-        least_aquars.main
+        least_squares.main
     ]
 
     console.print(f"  [bold magenta]Matrix Functions :")

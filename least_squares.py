@@ -11,7 +11,7 @@ def main() -> None:
 
     pivot_indices = []
 
-    utility.greeting("Solving System Of Linear Equations With Least Squars :)")
+    utility.greeting("Solving System Of Linear Equations With Least Squares :)")
 
     equation_count = utility.input_int("Enter Number Of Equations : ")
     variables = utility.input_int("Enter Number Of Unknows : ")
